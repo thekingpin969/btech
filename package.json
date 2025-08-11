@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun main.ts",
+    "dev": "bun main.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/cors": "^2.8.19"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
+    "@googleapis/youtube": "^28.0.0",
+    "axios": "^1.11.0",
+    "axios-https-proxy-fix": "^0.17.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "hono": "^4.9.0",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.6",
+    "internetarchive-sdk-js": "^1.0.43",
+    "mongodb": "4.13.0",
+    "redis": "^5.8.0",
+    "youtube-dl-exec": "^3.0.23",
+    "ytdl-core": "npm:@distube/ytdl-core"
+  }
+}
