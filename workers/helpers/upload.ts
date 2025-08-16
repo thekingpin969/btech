@@ -5,12 +5,10 @@ import proxyReq from '../../utils/proxyReq';
 
 async function upload(videoUri: string) {
     try {
-        console.log(`${process.env.IA_ACCESS_KEY}:${process.env.IA_SECRET_KEY}`)
         const ia = new InternetArchive(`${process.env.IA_ACCESS_KEY}:${process.env.IA_SECRET_KEY}`, { testmode: false })
 
         const response = await proxyReq({ method: 'GET', url: videoUri, responseType: 'arraybuffer' });
         const buffer = Buffer.from(response.data);
-        console.log(buffer)
         const res: any = await ia.createItem({
             identifier: randomBytes(12).toString('hex'),
             collection: 'opensource_movies',
