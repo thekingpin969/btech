@@ -1,4 +1,5 @@
 import getYtScrUri from "../../helpers/getYtSrcUri";
+import reportOnTelegramChannel from "./reportOnTelegramChannel";
 import upload from "./upload"
 
 async function manageUpload(videos: any[]) {
@@ -9,10 +10,11 @@ async function manageUpload(videos: any[]) {
             const vid: any = videos[i];
             const res = await getYtScrUri(vid.videoId)
             const upRes = await upload(res)
-            console.log(upRes)
+            await reportOnTelegramChannel(vid.thumbnails.high.url, { ...upRes, ...vid })
+            console.log(`upload of ${vid.videoId} completed...`)
         }
-    } catch (error) {
-        console.log(error)
+    } catch (error: any) {
+        console.log(error.message)
     }
 }
 

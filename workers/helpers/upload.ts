@@ -23,7 +23,7 @@ async function upload(videoUri: string) {
                 subject: 'generic',
             },
         });
-        return { ...res, src_url: 'https://s3.us.archive.org/' + res.upload.path }
+        return { ...res, src_url: 'https://s3.us.archive.org/' + res.upload.path, size: buffer.length }
     } catch (error) {
         console.log('error while uploading to IA, retrying...', error)
         return await upload(videoUri)
