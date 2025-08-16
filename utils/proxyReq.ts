@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios-https-proxy-fix"
 
-async function proxyReq(params: AxiosRequestConfig = {}) {
+async function proxyReq(params: AxiosRequestConfig = {}, proxyCount: number = 500) {
     try {
         const { data } = await axios.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&protocol=http&proxy_format=protocolipport&format=json&timeout=2000');
         if (!data || !Array.isArray(data.proxies) || data.proxies.length === 0) {
@@ -8,7 +8,7 @@ async function proxyReq(params: AxiosRequestConfig = {}) {
         }
         const proxies: string[] = data.proxies || [];
         const shuffled = proxies.sort(() => 0.5 - Math.random())
-        const randomProxies = shuffled.slice(0, 500)
+        const randomProxies = shuffled.slice(0, proxyCount)
 
         // Create an AbortController for each request
         const controllers: AbortController[] = [];
