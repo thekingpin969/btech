@@ -10,7 +10,7 @@ async function upload(videoUri: string) {
 
         const response = await proxyReq({ method: 'GET', url: videoUri, responseType: 'arraybuffer' });
         const buffer = Buffer.from(response.data);
-
+        console.log(buffer)
         const res: any = await ia.createItem({
             identifier: randomBytes(12).toString('hex'),
             collection: 'opensource_movies',
