@@ -7,7 +7,8 @@ async function manageUpload(videos: any[]) {
 
         for (let i = 0; i < videos.length; i++) {
             const vid: any = videos[i];
-            const res = await getYtScrUri('ubI6EmuM1iQ')
+            console.log(vid)
+            const res = await getYtScrUri('xSBbakfDM38')
             const upRes = await upload(res)
             console.log(upRes)
             break;
