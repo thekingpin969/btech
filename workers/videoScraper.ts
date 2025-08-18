@@ -9,12 +9,22 @@ const db = new Database()
 
 await db.setDB()
 
-console.log('fetching videos')
-const videos = await fetchVideos()
-console.log(videos.length, ' videos fetched')
+async function uploadManager() {
+    try {
 
-console.log('filtering videos')
-const filteredVideos = await filterOutVideos(videos)
+        console.log('fetching videos')
+        const videos = await fetchVideos()
+        console.log(videos.length, ' videos fetched')
 
-console.log('uploading videos')
-manageUpload(filteredVideos)
+        console.log('filtering videos')
+        const filteredVideos = await filterOutVideos(videos)
+
+        console.log('uploading videos')
+        manageUpload(filteredVideos)
+    } catch (error) {
+        console.log('system error:', error)
+        return await uploadManager()
+    }
+}
+
+await uploadManager()
