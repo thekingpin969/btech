@@ -19,7 +19,6 @@ async function manageUpload(videos: any[]) {
             await reportOnTelegramChannel(vid.thumbnails.high.url, { ...upRes, ...vid })
             console.log(`upload of ${vid.videoId} completed...`)
             db.addLogs({ ...upRes, ...vid }, 'videos')
-            break;
         }
     } catch (error: any) {
         console.log(error.message)
