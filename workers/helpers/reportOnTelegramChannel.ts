@@ -3,7 +3,7 @@ async function reportOnTelegramChannel(thumbnail: string, info: any = {}) {
         const BOT_TOKEN = process.env.BOT_TOKEN
         const CHAT_ID = process.env.CHAT_ID;
         if (!BOT_TOKEN || !CHAT_ID) throw new Error("Missing BOT_TOKEN or CHAT_ID");
-
+        console.log(BOT_TOKEN, CHAT_ID, info)
         const caption = `new upload to server\n\nvideoId: ${info.videoId}\ntitle: ${info.title}\nsize: ${info.size}\n\nsrc url : ${info.src_url}\n\nupload time: ${new Date().toLocaleString()}`;
 
         const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`;

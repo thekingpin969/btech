@@ -38,17 +38,17 @@ async function fetchVideos(): Promise<any[]> {
             }
         }
 
-        return allVideos.map((item: any) => {
+        return allVideos.filter((vid: any) => vid?.snippet?.liveBroadcastContent != 'live').map((item: any) => {
             const {
                 etag,
                 id: { videoId, kind },
                 snippet: { publishedAt, channelId, title, description, thumbnails, publishTime }
             } = item;
-            return { etag, videoId, kind, publishTime, publishedAt, channelId, title, description, thumbnails };
+            return { etag, videoId, kind, publishTime, publishedAt, channelId, title, description, thumbnails, temp: { ...item } };
         });
 
-    } catch (error) {
-        console.error('videos fetching failed, retrying...', error);
+    } catch (error: any) {
+        console.error('videos fetching failed, retrying...', error.message);
         return await fetchVideos();
     }
 }

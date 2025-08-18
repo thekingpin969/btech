@@ -9,7 +9,7 @@ async function getYtScrUri(vidId: string) {
         if (!data.dlink) throw Error('src uri not founded!')
         return data.dlink
     } catch (error: any) {
-        console.error('error while getting the src uri, retrying...')
+        console.error('error while getting the src uri, retrying...', error.message)
         return await getYtScrUri(vidId)
     }
 }

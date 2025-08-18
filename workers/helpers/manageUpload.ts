@@ -8,10 +8,15 @@ async function manageUpload(videos: any[]) {
 
         for (let i = 0; i < videos.length; i++) {
             const vid: any = videos[i];
-            const res = await getYtScrUri(vid.videoId)
+            console.log(vid)
+            // const res = await getYtScrUri(vid.videoId)
+            const res = await getYtScrUri('r_vMrkaUB68')
+            console.log(res)
             const upRes = await upload(res)
+            console.log('video uploaded')
             await reportOnTelegramChannel(vid.thumbnails.high.url, { ...upRes, ...vid })
             console.log(`upload of ${vid.videoId} completed...`)
+            break;
         }
     } catch (error: any) {
         console.log(error.message)
