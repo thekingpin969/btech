@@ -38,7 +38,10 @@ async function fetchVideos(): Promise<any[]> {
             }
         }
 
-        return allVideos.filter((vid: any) => vid?.snippet?.liveBroadcastContent != 'live').map((item: any) => {
+        return allVideos.filter((vid: any) =>
+            vid?.snippet?.liveBroadcastContent != "live" &&
+            vid?.snippet?.liveBroadcastContent != "upcoming"
+        ).map((item: any) => {
             const {
                 etag,
                 id: { videoId, kind },
