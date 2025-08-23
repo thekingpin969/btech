@@ -8,6 +8,7 @@ class Database {
         const mongoUser = process.env.MONGO_DB_USER
         const mongoPass = process.env.MONGO_DB_PASS
         const mongodb = process.env.MONGO_DB_DB
+        console.log(mongoPass, mongoUser)
         return new Promise((resolve, reject) => {
             MongoClient.connect(`mongodb+srv://${mongoUser}:${mongoPass}@cluster0.ywsn7md.mongodb.net/`, { useNewUrlParser: true }, (err, result) => {
                 if (err) reject(err)
