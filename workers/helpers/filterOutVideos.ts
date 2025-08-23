@@ -12,9 +12,8 @@ async function filterOutVideos(fetchedVideos: any[]) {
             (video: any) => !savedVideos.some(item => item.videoId == video.videoId)
         );
         return filteredVideos;
-    } catch (error) {
-        console.log('error filtering videos, retrying...', error)
-        return await filterOutVideos(fetchedVideos)
+    } catch (error: any) {
+        throw Error(error.message)
     }
 }
 
