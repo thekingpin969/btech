@@ -10,6 +10,7 @@ async function upload(videoUri: string) {
 
         const response = await proxyReq({ method: 'GET', url: videoUri, responseType: 'arraybuffer' });
         const buffer = Buffer.from(response.data);
+        if (buffer.length <= 0) throw Error('video fetching failed')
         console.log('size: ', (buffer.length / 1024).toFixed(3))
         const res: any = await ia.createItem({
             identifier: randomBytes(12).toString('hex'),
